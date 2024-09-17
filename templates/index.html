@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Platform</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="container">
+    <input 
+      type="text" 
+      id="keyword" 
+      placeholder="Enter keyword" 
+    />
+    <button id="search-btn">Search</button>
+
+    <ul id="results-list"></ul>
+  </div>
+
+  <script>
+    const searchButton = document.getElementById('search-btn');
+    const resultsList = document.getElementById('results-list');
+    const keywordInput = document.getElementById('keyword');
+
+    searchButton.addEventListener('click', async () => {
+      const keyword = keywordInput.value;
+
+      const response = await fetch('/search', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ keyword }),
+      });
+      
+      const data = await response.json();
+      resultsList.innerHTML = '';
+
+      data.forEach(result => {
+        const listItem = document.createElement('li');
+        listItem.textContent = result;
+        resultsList.appendChild(listItem);
+      });
+    });
+  </script>
+</body>
+</html>
