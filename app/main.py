@@ -1,4 +1,3 @@
-import os
 from flask import Flask, render_template, request, jsonify
 from bs4 import BeautifulSoup
 import requests
@@ -7,7 +6,7 @@ from app.telegram_api import fetch_telegram_messages
 
 app = Flask(__name__)
 
-@app.route('/templates')
+@app.route('/')
 def home():
     return render_template('index.html')
 
@@ -27,7 +26,4 @@ def search_keyword():
 
     return jsonify(results)
 if __name__ == '__main__':
-    # Get the port from the environment variable or default to 5000
-    port = int(os.environ.get('PORT', 5000))
-    # Run the app on host 0.0.0.0 and the specified port
-    app.run(debug=True, host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=5000)
