@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request, jsonify
 from bs4 import BeautifulSoup
 import requests
@@ -25,5 +26,5 @@ def search_keyword():
         results.append(title.get_text())
 
     return jsonify(results)
-if __name__ == '__main__':
+if __name__ == 'app':
     app.run(host='0.0.0.0', port=5000)
