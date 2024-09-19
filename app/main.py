@@ -6,7 +6,7 @@ from app.telegram_api import fetch_telegram_messages
 
 app = Flask(__name__)
 
-@app.route('/app')
+@app.route('/templates')
 def home():
     return render_template('index.html')
 
