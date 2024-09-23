@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, request, jsonify
 from bs4 import BeautifulSoup
 import requests
 from app.google_news import scrape_google_news
